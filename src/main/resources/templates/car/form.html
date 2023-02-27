@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Car creator</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
+
 <body>
+<h1>Car creator</h1>
+</br>
+
+<form method="post" action="/cars/create">
+    <input type="text" name="mark" placeholder="MARK" required/>
+    </br>
+    <input type="text" name="model" placeholder="MODEL" required/>
+    <br/>
+    <select id="fuelSelect" name="fuel" required>
+        <option value="" disabled selected>select fuel</option>
+        <option th:each="fuel : ${fuels}" th:text="${fuel}" th:value="fuel"></option>
+
+    </select>
+
+</form>
 
 </body>
 </html>

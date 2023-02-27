@@ -1,11 +1,19 @@
 package com.example.garageservice.garage.model;
 
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class Adress {
+@Builder
+public class Adress implements Serializable {
 
     private String city;
     private String street;
@@ -13,38 +21,9 @@ public class Adress {
     private String numberOfApartament;
     private String zipCode;
 
-    public Adress(String city, String street, String numberOfBuilding, String numberOfApartament, String zipCode) {
-        this.city = city;
-        this.street = street;
-        this.numberOfBuilding = numberOfBuilding;
-        this.numberOfApartament = numberOfApartament;
-        this.zipCode = zipCode;
-    }
 
-    public Adress(String city, String street, String numberOfBuilding, String zipCode) {
-        this.city = city;
-        this.street = street;
-        this.numberOfBuilding = numberOfBuilding;
-        this.zipCode = zipCode;
-    }
 
-    public Adress(String city, String numberOfBuilding, String zipCode) {
-        this.city = city;
-        this.numberOfBuilding = numberOfBuilding;
-        this.zipCode = zipCode;
-    }
 
-    @Override
-    public String toString() {
-        if (numberOfApartament.equals(null) && street.equals(null)) {
-            return city + " " + numberOfBuilding + " " + zipCode;
-        }
-        if (numberOfApartament.equals(null)) {
-            return city + " " + street + " " + numberOfBuilding + " " + zipCode;
-        } else {
-            return city + " " + street + " " + numberOfBuilding + " " + numberOfApartament + " " + zipCode;
-        }
-    }
 }
 
 

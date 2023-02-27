@@ -4,6 +4,8 @@ package com.example.garageservice.car.model;
 import com.example.garageservice.common.Fuel;
 import com.example.garageservice.garage.model.Garage;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,17 +22,17 @@ import lombok.Setter;
 @Setter
 @Builder
 @Entity
-
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String marka;
+    private String mark;
 
     private String model;
 
+    @Enumerated(EnumType.STRING)
     private Fuel fuel;
 
     @ManyToOne

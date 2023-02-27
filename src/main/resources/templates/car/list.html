@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Car list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
 
+<body>
+<h1>Car list</h1>
+</br>
+<h3 align="center"><a href="/garages">Garages</a></h3>
+</br>
+<h4 align="center"><a href="cars/create">dodaj</a></h4>
+
+<table>
+    <thead>
+    <tr>
+        <th th:width="100">ID</th>
+        <th th:width="100">MARK</th>
+        <th th:width="100">MODEL</th>
+        <th th:width="100">FUEL TYPE</th>
+        <th th:width="100">GARAGE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tbody th:bgcolor="aqua" th:color="black" align="center">
+    <tr th:each="car : ${cars}">
+        <td th:width="100" th:text="${car.id}"></td>
+        <td th:width="100" th:text="${car.mark}"></td>
+        <td th:width="100" th:text="${car.model}"></td>
+        <td th:width="100" th:text="${car.fuel}"></td>
+        <td th:width="100" th:text="${car.garage}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
