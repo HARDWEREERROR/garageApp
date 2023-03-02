@@ -13,5 +13,4 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
     List<Car> findAllByGarageId(int garageId);
 
-
 }

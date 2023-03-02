@@ -15,7 +15,7 @@ public interface GarageRepository extends JpaRepository<Garage, Integer> {
     List<Garage> findAllByFuelsContaining(Fuel fuel);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    Optional<Garage> findWithLockingById(int id);
+    Optional<Garage> findWithLockingById(int garageId);
 
 
 

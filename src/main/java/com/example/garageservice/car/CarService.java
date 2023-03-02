@@ -19,29 +19,29 @@ public class CarService {
 
     private final GarageRepository garageRepository;
 
-    public List<Car> findAll(){
+    public List<Car> findAll() {
         return carRepository.findAll();
     }
 
     @Transactional
-    public void save(Car car, int garageId){
+    public void save(Car car, int garageId) {
         Garage garage = garageRepository.findWithLockingById(garageId)
-                .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("Garage with id={0} has not been found",garageId)));
-        if (!garage.getFuels().contains(car.getFuel())){
+                .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format("Garage with id={0} has not been found", garageId)));
+        if (!garage.getFuels().contains(car.getFuel())) {
             throw new IllegalArgumentException("Garage does NOT allow to park car with this type of fuel");
         }
-        if (garage.getCars().size()>= garage.getCapacity()){
+        if (garage.getCars().size() >= garage.getCapacity()) {
             throw new IllegalArgumentException("Capacity of this Garage is full");
         }
         car.setGarage(garage);
         carRepository.save(car);
     }
 
-    public List<Car> findAllByGarage(int garageId){
+    public List<Car> findAllByGarage(int garageId) {
         return carRepository.findAllByGarageId(garageId);
     }
 
-    public void deleteById (int carId){
+    public void deleteById(int carId) {
         carRepository.deleteById(carId);
     }
 }
