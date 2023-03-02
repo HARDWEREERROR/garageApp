@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <style>
+
+        body {
+            background: black;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        tr {
+            color: black;
+            background: aqua;
+        }
+
+
+    </style>
+    <title>Garage List</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
+<h1>Garage list</h1>
+</br>
+<h3 align="center"><a href="/cars">Cars</a></h3>
+</br>
+<h4 align="center"><a href="/garages/create">dodaj</a></h4>
+</br>
 
+<table width="1000" th:color="black" align="center">
+    <thead>
+    <tr>
+        <th th:width="100">ID</th>
+        <th th:width="200">Adress</th>
+        <th th:width="300">Capacity</th>
+        <th th:width="300">Fuels</th>
+        <th th:width="400">Car List</th>
+        <th th:width="100"></th>
+    </tr>
+    </thead>
+    <tbody th:bgcolor="aqua" th:color="black" align="center">
+    <tr th:each="garage : ${garages}">
+        <td th:width="100" th:text="${garage.id}"></td>
+        <td th:width="200" th:text="${garage.adress}"></td>
+        <td th:width="300" th:text="${garage.capacity}"></td>
+        <td th:width="300" th:text="${garage.fuels}"></td>
+        <td th:width="400" th:text="${garage.cars}"></td>
+        <td th:width="100">
+            <button th:id="deleteBtn + ${garage.id}" th:value="${garage.id}" onclick="deleteGarage(this.id)">USUŃ</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
+
+<script type="text/javascript">
+    function deleteGarage(btnId) {
+        let btn = document.getElementById(btnId);
+        let url = "teachers?teacherId=" + btn.value;
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function () {
+                window.location.reload();
+            },
+            error: function (){
+                alert("wystapił błąd podczas usuwania");
+            }
+        })
+    }
+</script>

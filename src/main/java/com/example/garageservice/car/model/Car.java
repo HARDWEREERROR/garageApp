@@ -15,6 +15,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +24,8 @@ import lombok.Setter;
 @Setter
 @Builder
 @Entity
+@SQLDelete(sql = "UPDATE car SET active = '0' WHERE id = ?")
+@Where(clause = "active = 1")
 public class Car {
 
     @Id
@@ -38,5 +42,11 @@ public class Car {
     @ManyToOne
     private Garage garage;
 
+    private boolean active = true;
 
+
+    @Override
+    public String toString() {
+        return mark + " " + model;
+    }
 }

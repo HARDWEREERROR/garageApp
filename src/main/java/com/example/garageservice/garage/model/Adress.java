@@ -22,8 +22,6 @@ public class Adress implements Serializable {
     private String zipCode;
 
 
-
-
 }
 
 

@@ -4,6 +4,7 @@ package com.example.garageservice.garage.model;
 import com.example.garageservice.car.model.Car;
 import com.example.garageservice.common.Fuel;
 import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,17 +38,21 @@ public class Garage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Adress adres;
+    private String adress;
 
     private int capacity;
-
-    private boolean lpgAllowed = true;
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "garage_fuel", joinColumns = @JoinColumn(name = "garage_id"))
+    @Column(name = "fuel")
     private Set<Fuel> fuels;
 
-    @OneToMany
+    @OneToMany(mappedBy = "garage")
     private Set<Car> cars;
+
+    @Override
+    public String toString() {
+        return adress + " ";
+    }
 }
