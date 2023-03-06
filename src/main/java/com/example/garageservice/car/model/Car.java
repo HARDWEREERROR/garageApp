@@ -24,8 +24,8 @@ import org.hibernate.annotations.Where;
 @Setter
 @Builder
 @Entity
-@SQLDelete(sql = "UPDATE car SET active = '0' WHERE id = ?")
-@Where(clause = "active = 1")
+@SQLDelete(sql = "UPDATE car SET active = false WHERE id = ?")
+@Where(clause = "active = true")
 public class Car {
 
     @Id
