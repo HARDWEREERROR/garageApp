@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Unpark</title>
+    <style>
+
+        body {
+            background: black;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        form {
+            color: white;
+            background: black;
+            text-align: center;
+        }
+
+        button {
+            background: peru;
+        }
+
+        select {
+            background: peru;
+        }
+
+        input {
+            background: peru;
+        }
+
+    </style>
+
+</head>
+<body>
+<h1>Unpark</h1>
+</br>
+
+<form method="post" action="/carGarages/unpark">
+
+    <select id="=carSelect" name="carId" required>
+        <option value="" disabled selected>Select Car</option>
+        <option th:each="car : ${cars}" th:text="${car.mark + ' ' + car.model + ' ' + car.fuel}"
+                th:value="${car.id}"></option>
+    </select>
+
+    <select id="=garageSelect" name="garageId" required>
+        <option value="" disabled selected>Select Car</option>
+        <option th:each="garage : ${garages}" th:text="${garage.adress + ' ' + garage.fuels}"
+                th:value="${garage.id}"></option>
+    </select>
+    </br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

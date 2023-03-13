@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: black;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        tr {
+            color: black;
+            background: yellow;
+        }
+
+    </style>
+
+    <title>Parking</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Parking</h1>
+</br>
+<h3 align="center"><a href="/cars">Cars</a></h3>
+<h3 align="center"><a href="/garages">Garages</a></h3>
+</br>
+<h4 align="center"><a href="/carGarages/create">ZAPARKUJ</a></h4>
+</br>
+<table width="1000" th:color="black" align="center">
+    <thead>
+    <tr>
+        <th th:width="100">ID</th>
+        <th th:width="200">CAR</th>
+        <th th:width="200">GARAGE</th>
+        <th th:width="100"></th>
+    </tr>
+    </thead>
+    <tbody th:bgcolor="yellow" th:color="black" align="center">
+    <tr th:each="carGarage : ${carGarages}">
+        <td th:width="100" th:text="${carGarage.id}"></td>
+        <td th:width="200" th:text="${carGarage.car}"></td>
+        <td th:width="200" th:text="${carGarage.garage}"></td>
+        <td th:width="100">
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h4 align="center"><a href="/carGarages/unpark">WYPARKUJ</a></h4>
+</br>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.garageservice.garage.model;
 
 
 import com.example.garageservice.car.model.Car;
+import com.example.garageservice.carGarage.CarGarage;
 import com.example.garageservice.common.Fuel;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -50,6 +51,9 @@ public class Garage {
 
     @OneToMany(mappedBy = "garage")
     private Set<Car> cars;
+
+    @OneToMany(mappedBy = "garage")
+    private Set<CarGarage> carGarageSet;
 
     @Override
     public String toString() {

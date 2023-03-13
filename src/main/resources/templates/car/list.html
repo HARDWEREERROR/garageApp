@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Car list</title>
@@ -28,7 +28,11 @@
 </br>
 <h3 align="center"><a href="/garages">Garages</a></h3>
 </br>
+<h3 align="center"><a href="/carGarages">Parking</a></h3>
+</br>
 <h4 align="center"><a href="cars/create">dodaj</a></h4>
+</br>
+
 
 <table align="center">
     <thead>
@@ -55,21 +59,23 @@
     </tr>
     </tbody>
 </table>
+<h4 align="center"><a href="/carGarages/unpark">WYPARKUJ</a></h4>
+</br>
 </body>
 </html>
 
 <script type="text/javascript">
 
     function deleteCar(btnId) {
-        let  btn = document.getElementById(btnId);
+        let btn = document.getElementById(btnId);
         let url = "cars?carId=" + btn.value;
         $.ajax({
             url: url,
             type: 'DELETE',
-            success: function (){
+            success: function () {
                 window.location.reload();
             },
-            error: function() {
+            error: function () {
                 alert("wystąpił błąd podczas usuwania");
             }
         })

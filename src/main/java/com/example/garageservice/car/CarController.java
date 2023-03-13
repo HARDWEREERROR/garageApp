@@ -23,7 +23,7 @@ import java.util.List;
 public class CarController {
 
     private final CarService carService;
-    private final GarageService garageService;
+
 
 @GetMapping
    public String getAll(Model model){
@@ -34,13 +34,12 @@ public class CarController {
    @GetMapping("/create")
    public String getCarCreateForm(Model model){
     model.addAttribute("fuels", Fuel.values());
-    model.addAttribute("garages",garageService.findAll());
     return "car/form";
    }
 
    @PostMapping("/create")
-   public String createCar(Car car, @RequestParam("garageId") int garageId){
-     carService.save(car, garageId);
+   public String createCar(Car car){
+     carService.save(car);
      return "redirect:/cars";
    }
     @GetMapping(params = "garageId")
