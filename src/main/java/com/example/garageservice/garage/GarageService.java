@@ -37,15 +37,11 @@ public class GarageService {
         Garage garage = garageRepository.findWithLockingById(garageId)
                 .orElseThrow(() -> new EntityNotFoundException(MessageFormat
                         .format("Garage with id={0} has not been found", garageId)));
-        for (CarGarage carGarage : garage.getCarGarageSet()) {
-            carGarage.setGarage(null);
-            carGarage.setCar(null);
-        }
+
         for (Car car : garage.getCars()){
             car.setGarage(null);
         }
-        garage.getCarGarageSet().clear();
-        garage.getCars().clear();
+
         garageRepository.deleteById(garageId);
     }
 }
