@@ -2,8 +2,8 @@ package com.example.garageservice.carGarage;
 
 import com.example.garageservice.car.CarRepository;
 import com.example.garageservice.car.model.Car;
+import com.example.garageservice.carGarage.model.CarGarage;
 import com.example.garageservice.garage.GarageRepository;
-import com.example.garageservice.garage.GarageService;
 import com.example.garageservice.garage.model.Garage;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.MessageFormat;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

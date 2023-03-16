@@ -1,4 +1,4 @@
-package com.example.garageservice.carGarage;
+package com.example.garageservice.carGarage.model;
 
 import com.example.garageservice.car.model.Car;
 import com.example.garageservice.garage.model.Garage;

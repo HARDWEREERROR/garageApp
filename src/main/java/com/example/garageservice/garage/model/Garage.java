@@ -2,7 +2,7 @@ package com.example.garageservice.garage.model;
 
 
 import com.example.garageservice.car.model.Car;
-import com.example.garageservice.carGarage.CarGarage;
+import com.example.garageservice.carGarage.model.CarGarage;
 import com.example.garageservice.common.Fuel;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -15,18 +15,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
-import java.util.Calendar;
 import java.util.Set;
 
 @AllArgsConstructor

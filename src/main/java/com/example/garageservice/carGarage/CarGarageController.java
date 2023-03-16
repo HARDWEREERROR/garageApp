@@ -1,9 +1,9 @@
 package com.example.garageservice.carGarage;
 
 import com.example.garageservice.car.CarService;
+import com.example.garageservice.carGarage.model.CarGarage;
 import com.example.garageservice.garage.GarageService;
 import lombok.RequiredArgsConstructor;
-import org.h2.engine.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

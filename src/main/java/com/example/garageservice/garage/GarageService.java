@@ -1,11 +1,9 @@
 package com.example.garageservice.garage;
 
 import com.example.garageservice.car.model.Car;
-import com.example.garageservice.carGarage.CarGarage;
 import com.example.garageservice.common.Fuel;
 import com.example.garageservice.garage.model.Garage;
 import jakarta.persistence.EntityNotFoundException;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
