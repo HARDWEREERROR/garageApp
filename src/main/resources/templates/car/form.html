@@ -41,14 +41,9 @@
     <br/>
     <label>Types of fuel:</label>
     </br>
-    <select id="fuelSelect" name="fuel" required onchange="populateGarages(this.id, 'garageSelect')">
+    <select id="fuelSelect" name="fuel" required>
         <option value="" disabled selected>select fuel</option>
         <option th:each="fuel : ${fuels}" th:text="${fuel}" th:value="${fuel}"></option>
-    </select>
-    </br>
-    <select id="garageSelect" name="garageId" required>
-        <option value="" disabled selected>Select Garage</option>
-
     </select>
     </br>
 
@@ -59,18 +54,3 @@
 </body>
 </html>
 
-<script type="text/javascript">
-    function populateGarages(fuelSelectId, garageSelectId) {      //w argumentach przekazujemy id komponentów, które będą nam potrzebne do realizacji przeładowania nauczycieli
-        let fuelSelect = document.getElementById(fuelSelectId);    //ze strony zaciągamy referencję do komponentu o id fuelSelectId
-        let garageSelect = document.getElementById(garageSelectId); //ze strony zaciągamy referencję do komponentu o id garageSelectId
-        let url = "/garages?fuel=" + fuelSelect.value;    //budujemy url korzystając z aktualnie wybranej opcji w selectie języków
-        $.getJSON(url, function (data) {    //wysyłamy zapytanie GET na adres 'url' i wykonujemy funkcję dla 'data' które jest odpowiedzią na zapytanie (tutaj lista nauczycieli)
-            garageSelect.innerHTML = '<option value="" disabled selected>Select Garage</option>';   //podmiana kodu html w selectie nauczycieli
-            data.forEach(garage => {                                               //funkcja forEach dla każdego nauczyciela z 'data'
-                // <option value="1">Jan Kowalski</option>
-                let option = '<option value="' + garage.id + '">' + garage.adress + ' ' + garage.capacity + '</option>';   //budujemy option jak w przykładzie linijkę wyżej
-                garageSelect.innerHTML += option;        //dodajemy stworzony option do selecta nauczycieli
-            })
-        });
-    }
-</script>

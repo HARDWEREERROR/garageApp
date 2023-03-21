@@ -24,16 +24,7 @@ public class CarService {
     }
 
     @Transactional
-    public void save(Car car, int garageId) {
-        Garage garage = garageRepository.findWithLockingById(garageId)
-                .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format("Garage with id={0} has not been found", garageId)));
-        if (!garage.getFuels().contains(car.getFuel())) {
-            throw new IllegalArgumentException("Garage does NOT allow to park car with this type of fuel");
-        }
-        if (garage.getCars().size() >= garage.getCapacity()) {
-            throw new IllegalArgumentException("Capacity of this Garage is full");
-        }
-        car.setGarage(garage);
+    public void save(Car car) {
         carRepository.save(car);
     }
 
@@ -41,7 +32,14 @@ public class CarService {
         return carRepository.findAllByGarageId(garageId);
     }
 
+    @Transactional
     public void deleteById(int carId) {
+        Car car = carRepository.findWithLockingById(carId)
+                .orElseThrow(() -> new EntityNotFoundException(MessageFormat
+                        .format("Car with id={0} has not been found", carId)));
+        if (car.getGarage() != null) {
+            car.getGarage().getCars().remove(car);
+        }
         carRepository.deleteById(carId);
     }
 }

@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -39,92 +40,5 @@ public class CarServiceTest {
     private ArgumentCaptor<Car> carArgumentCaptor;
 
 
-    @Test
-    void testSave() {
-        // Given
-        int garageId = 1;
-        Fuel fuelType = Fuel.PETROL;
-        Garage garage = new Garage();
-        garage.setId(garageId);
-        garage.setCapacity(2);
-        garage.setFuels(Set.of(fuelType));
-        Car car = new Car();
-        car.setFuel(fuelType);
-
-        when(garageRepository.findWithLockingById(garageId)).thenReturn(Optional.of(garage));
-        when(carRepository.save(car)).thenReturn(car);
-
-        // When
-        carService.save(car, garageId);
-
-        // Then
-        Assertions.assertEquals(garage, car.getGarage());
-    }
-
-    @Test
-    void testSave_withGarageNotFound() {
-        // Given
-        int garageId = 1;
-        Fuel fuelType = Fuel.PETROL;
-        Garage garage = new Garage();
-        garage.setId(garageId);
-        garage.setCapacity(2);
-        garage.setFuels(Set.of(fuelType));
-        Car car = new Car();
-        car.setFuel(fuelType);
-
-        when(garageRepository.findWithLockingById(garageId)).thenReturn(Optional.empty());
-
-        // Then
-        Assertions.assertThrows(EntityNotFoundException.class, () -> {
-            carService.save(car, garageId);
-        });
-    }
-
-    @Test
-    void testSave_withGarageNotAllowFuelType() {
-        // Given
-        int garageId = 1;
-        Fuel garageFuelType = Fuel.PETROL;
-        Fuel carFuelType = Fuel.DIESEL;
-        Garage garage = new Garage();
-        garage.setId(garageId);
-        garage.setCapacity(2);
-        garage.setFuels(Set.of(garageFuelType));
-        Car car = new Car();
-        car.setFuel(carFuelType);
-
-        when(garageRepository.findWithLockingById(garageId)).thenReturn(Optional.of(garage));
-
-        // Then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            carService.save(car, garageId);
-        });
-    }
-
-    @Test
-    void testSave_withGarageCapacityFull() {
-        // Given
-        int garageId = 1;
-        Fuel fuelType = Fuel.PETROL;
-        Garage garage = new Garage();
-        garage.setId(garageId);
-        garage.setCapacity(1);
-        garage.setFuels(Set.of(fuelType));
-        Car car1 = new Car();
-        car1.setFuel(fuelType);
-        Car car2 = new Car();
-        car2.setFuel(fuelType);
-        garage.setCars(Set.of(car1, car2));
-        Car car = new Car();
-        car.setFuel(fuelType);
-
-        when(garageRepository.findWithLockingById(garageId)).thenReturn(Optional.of(garage));
-
-        // Then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            carService.save(car, garageId);
-        });
-    }
 
 }
